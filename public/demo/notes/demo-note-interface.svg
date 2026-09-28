@@ -1,0 +1,9 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 1200" role="img" aria-labelledby="title desc">
+  <title id="title">Room for thought editorial study</title><desc id="desc">An abstract interface composition with deliberate quiet space.</desc>
+  <rect width="900" height="1200" fill="#0d1117"/>
+  <g stroke="#b8c2d1" stroke-opacity=".17" fill="none"><rect x="72" y="84" width="756" height="1032"/><path d="M72 210h756M274 210v906"/><circle cx="632" cy="568" r="221"/><circle cx="632" cy="568" r="144"/></g>
+  <g font-family="monospace" font-size="14" letter-spacing="3" fill="#788292"><text x="105" y="132">INTERFACE STUDY / 08</text><text x="105" y="260">ATTENTION</text><text x="105" y="1068">SPACE TO THINK</text></g>
+  <path d="M342 568h580" stroke="#8fa8d4" stroke-opacity=".55"/><circle cx="632" cy="568" r="8" fill="#c6a16b"/>
+  <text x="104" y="426" font-family="serif" font-size="76" fill="#efebe2">Leave room</text><text x="104" y="506" font-family="serif" font-size="76" font-style="italic" fill="#efebe2">for thought.</text>
+  <g fill="#8fa8d4"><rect x="105" y="622" width="92" height="4"/><rect x="105" y="652" width="126" height="4" opacity=".62"/><rect x="105" y="682" width="71" height="4" opacity=".34"/></g>
+</svg>

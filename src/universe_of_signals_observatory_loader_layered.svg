@@ -1,0 +1,119 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape" width="1672" height="941" viewBox="0 0 1672 941">
+  <defs>
+    <radialGradient id="centerGlow" cx="50%" cy="50%" r="50%">
+      <stop offset="0%" stop-color="#c89449" stop-opacity="0.12"/>
+      <stop offset="40%" stop-color="#8c6332" stop-opacity="0.04"/>
+      <stop offset="100%" stop-color="#07111c" stop-opacity="0"/>
+    </radialGradient>
+    <pattern id="minorGrid" width="55" height="55" patternUnits="userSpaceOnUse">
+      <path d="M55 0H0V55" fill="none" stroke="#314050" stroke-opacity="0.18" stroke-width="0.7"/>
+    </pattern>
+    <pattern id="majorGrid" width="220" height="220" patternUnits="userSpaceOnUse">
+      <rect width="220" height="220" fill="url(#minorGrid)"/>
+      <path d="M220 0H0V220" fill="none" stroke="#46576b" stroke-opacity="0.12" stroke-width="0.9"/>
+    </pattern>
+    <filter id="softGlow" x="-80%" y="-80%" width="260%" height="260%">
+      <feGaussianBlur stdDeviation="4" result="b"/>
+      <feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge>
+    </filter>
+    <style><![CDATA[
+      .gold{stroke:#b8894a}.gold2{stroke:#d4a55d}.dim{stroke:#8e6d3f}
+      .thin{fill:none;stroke-width:1.15;vector-effect:non-scaling-stroke}
+      .hair{fill:none;stroke-width:.78;vector-effect:non-scaling-stroke}
+      .dash{stroke-dasharray:3 6}.dotdash{stroke-dasharray:1.5 5.5}
+    ]]></style>
+  </defs>
+
+  <g id="layer-background" inkscape:groupmode="layer" inkscape:label="01 Background">
+    <rect width="1672" height="941" fill="#07111c"/>
+    <rect width="1672" height="941" fill="#02070d" opacity="0.22"/>
+  </g>
+
+  <g id="layer-grid" inkscape:groupmode="layer" inkscape:label="02 Grid">
+    <rect width="1672" height="941" fill="url(#majorGrid)" opacity="0.58"/>
+  </g>
+
+  <g id="layer-glow" inkscape:groupmode="layer" inkscape:label="03 Center Glow">
+    <ellipse cx="836" cy="476" rx="350" ry="245" fill="url(#centerGlow)"/>
+  </g>
+
+  <g id="layer-orbits" inkscape:groupmode="layer" inkscape:label="04 Orbit System">
+    <ellipse cx="836" cy="555" rx="355" ry="59" class="thin dim" opacity="0.55"/>
+    <ellipse cx="836" cy="552" rx="213" ry="37" class="hair gold dash" opacity="0.30"/>
+    <path d="M581 553C590 423 680 322 809 304C846 299 897 302 945 315" class="thin gold dotdash" opacity="0.78"/>
+    <path d="M946 315C964 320 976 324 992 331" class="hair gold dotdash" opacity="0.45"/>
+    <circle cx="581" cy="553" r="4.1" fill="#07111c" stroke="#9b7641"/>
+    <circle cx="1089" cy="588" r="5.5" fill="#07111c" stroke="#a47e44"/>
+    <circle cx="658" cy="608" r="2.1" fill="#cf9d52"/>
+    <circle cx="991" cy="610" r="2.1" fill="#cf9d52"/>
+    <circle cx="946" cy="315" r="4" fill="#d6a457" filter="url(#softGlow)"/>
+  </g>
+
+  <g id="layer-observatory-base" inkscape:groupmode="layer" inkscape:label="05 Observatory Base">
+    <path d="M705 494H966L952 507H718Z" fill="#0b1622" stroke="#a97f45" stroke-width="1.15"/>
+    <path d="M713 507H958V519H713Z" fill="#0a141f" stroke="#876536" stroke-width="0.9"/>
+    <path d="M724 519Q836 531 947 519V580Q836 592 724 580Z" fill="#09131e" stroke="#aa7f45" stroke-width="1.1"/>
+    <path d="M724 532Q836 543 947 532M724 548Q836 558 947 548M724 565Q836 574 947 565" class="hair dim" opacity="0.55"/>
+    <path d="M747 522V578M780 524V582M814 526V584M857 526V584M900 524V582M932 522V578" class="hair dim" opacity="0.45"/>
+    <g id="base-windows" fill="#101d2b" stroke="#9a7441" stroke-width="0.85">
+      <rect x="744" y="525" width="11" height="8"/><rect x="765" y="527" width="12" height="8"/><rect x="790" y="529" width="12" height="8"/>
+      <rect x="871" y="529" width="12" height="8"/><rect x="896" y="527" width="12" height="8"/><rect x="918" y="525" width="11" height="8"/>
+    </g>
+    <path d="M818 581V550Q818 542 826 542H848Q856 542 856 550V581" fill="#08111b" stroke="#a97f45"/>
+    <line x1="837" y1="544" x2="837" y2="581" class="hair dim"/>
+    <circle cx="850" cy="562" r="1.7" fill="#c08e4a"/>
+    <g id="annex">
+      <ellipse cx="661" cy="538" rx="28" ry="7" fill="#0a141f" stroke="#8d6a3d" stroke-width="0.9"/>
+      <rect x="633" y="538" width="56" height="35" rx="2" fill="#08131e" stroke="#8d6a3d" stroke-width="0.9"/>
+      <ellipse cx="661" cy="573" rx="28" ry="6" fill="#08131e" stroke="#8d6a3d" stroke-width="0.8"/>
+      <line x1="641" y1="540" x2="641" y2="571" class="hair dim" opacity="0.5"/>
+      <line x1="681" y1="540" x2="681" y2="571" class="hair dim" opacity="0.5"/>
+    </g>
+  </g>
+
+  <g id="layer-dome" inkscape:groupmode="layer" inkscape:label="06 Observatory Dome">
+    <path d="M713 492C721 420 767 372 806 364V493Z" fill="#09131e" stroke="#b1864b" stroke-width="1.2"/>
+    <path d="M867 364C906 372 952 420 960 492L867 493Z" fill="#09131e" stroke="#b1864b" stroke-width="1.2"/>
+    <rect x="806" y="363" width="17" height="131" fill="#0b1621" stroke="#c09450" stroke-width="1.1"/>
+    <rect x="850" y="363" width="17" height="131" fill="#0b1621" stroke="#c09450" stroke-width="1.1"/>
+    <path d="M733 487C737 431 762 389 791 372M756 489C758 442 774 401 800 378M940 487C936 431 911 389 882 372M917 489C915 442 899 401 873 378" class="thin dim" opacity="0.62"/>
+    <path d="M707 491Q836 501 966 491" class="thin gold"/>
+    <path d="M710 500Q836 510 963 500" class="hair dim"/>
+  </g>
+
+  <g id="layer-telescope" inkscape:groupmode="layer" inkscape:label="07 Telescope">
+    <g id="telescope-mount">
+      <circle cx="836" cy="440" r="12" fill="#09131e" stroke="#bd8e4a" stroke-width="1.1"/>
+      <path d="M836 452L822 485M836 452L850 485M826 466H846" class="thin gold"/>
+    </g>
+    <g id="telescope-tube" transform="rotate(-42 837 428)">
+      <rect x="810" y="417" width="73" height="18" rx="3" fill="#0b1621" stroke="#c6984e" stroke-width="1.1"/>
+      <rect x="879" y="414" width="14" height="24" fill="#0b1621" stroke="#c6984e"/>
+      <line x1="819" y1="420" x2="819" y2="433" class="hair dim"/>
+      <circle cx="842" cy="426" r="2.2" fill="#d6a457"/>
+    </g>
+  </g>
+
+  <g id="layer-antenna" inkscape:groupmode="layer" inkscape:label="08 Antenna">
+    <line x1="978" y1="572" x2="978" y2="421" class="thin gold" opacity="0.85"/>
+    <line x1="969" y1="570" x2="987" y2="570" class="hair dim"/>
+    <circle cx="978" cy="421" r="3.1" fill="#d5a258" filter="url(#softGlow)"/>
+    <circle cx="978" cy="421" r="8" fill="none" stroke="#9c7440" stroke-width="0.6" opacity="0.33"/>
+  </g>
+
+  <g id="layer-markers" inkscape:groupmode="layer" inkscape:label="09 Alignment Markers">
+    <g class="hair dim" opacity="0.4">
+      <path d="M836 197V235M817 216H855M836 704V743M817 724H855M432 464H471M451 445V483M1200 464H1239M1220 445V483"/>
+      <rect x="833" y="213" width="6" height="6" fill="#07111c"/><rect x="833" y="721" width="6" height="6" fill="#07111c"/>
+      <rect x="448" y="461" width="6" height="6" fill="#07111c"/><rect x="1217" y="461" width="6" height="6" fill="#07111c"/>
+    </g>
+    <g class="hair gold dotdash" opacity="0.28"><path d="M836 195V269M836 672V749M425 464H500M1171 464H1247"/></g>
+  </g>
+
+  <g id="layer-status" inkscape:groupmode="layer" inkscape:label="10 Status Label">
+    <text x="836" y="661" text-anchor="middle" font-family="IBM Plex Mono, ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="16" letter-spacing="6.2" fill="#d7a65b">03 / READING</text>
+    <line x1="679" y1="643" x2="679" y2="674" class="hair gold dotdash" opacity="0.42"/>
+    <line x1="993" y1="643" x2="993" y2="674" class="hair gold dotdash" opacity="0.42"/>
+  </g>
+</svg>

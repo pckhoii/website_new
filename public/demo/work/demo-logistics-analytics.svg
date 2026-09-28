@@ -1,0 +1,12 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 800" role="img" aria-labelledby="title desc">
+  <title id="title">Logistics analytics demo</title><desc id="desc">An operational route map with service-level metrics.</desc>
+  <defs><linearGradient id="bg" x2="1" y2="1"><stop stop-color="#151914"/><stop offset=".58" stop-color="#0e1418"/><stop offset="1" stop-color="#080a0d"/></linearGradient></defs>
+  <rect width="1200" height="800" fill="url(#bg)"/>
+  <g fill="none" stroke="#8b9691" stroke-opacity=".15"><path d="M-50 650C177 512 282 578 443 394S786 146 1255 203"/><path d="M-20 191C216 267 343 184 511 278s315 237 709 133"/><path d="M246 -20C333 189 271 310 380 458s201 188 210 363"/><path d="M846 -20C731 184 820 303 733 440s-121 220-81 379"/></g>
+  <g fill="none" stroke="#8fa8d4" stroke-width="3"><path d="M109 605C263 514 321 552 420 427s227-73 307-165 166 4 314-96"/></g>
+  <g fill="#8fa8d4"><circle cx="109" cy="605" r="8"/><circle cx="420" cy="427" r="7"/><circle cx="727" cy="262" r="7"/><circle cx="1041" cy="166" r="8"/></g>
+  <g fill="none" stroke="#c6a16b"><circle cx="420" cy="427" r="24"/><circle cx="727" cy="262" r="18"/></g>
+  <g font-family="monospace" font-size="13" fill="#89928f" letter-spacing="2"><text x="64" y="58">LOGISTICS ANALYTICS / ROUTE 04</text><text x="958" y="58">16 AUG 2026</text><text x="93" y="645">HCM / HUB A</text><text x="390" y="468">TRANSFER</text><text x="1001" y="207">NORTH</text></g>
+  <g transform="translate(72 104)"><rect width="280" height="174" fill="#0b0e11" fill-opacity=".78" stroke="#d1d8d3" stroke-opacity=".16"/><text x="22" y="34" font-family="sans-serif" font-size="13" fill="#8e9694">ON-TIME SERVICE</text><text x="22" y="91" font-family="serif" font-size="48" fill="#ede9df">94.2%</text><path d="M22 132h220" stroke="#39423e"/><path d="M22 132h186" stroke="#c6a16b" stroke-width="3"/></g>
+  <g transform="translate(822 503)"><rect width="310" height="225" fill="#0b0e11" fill-opacity=".86" stroke="#d1d8d3" stroke-opacity=".16"/><text x="22" y="34" font-family="monospace" font-size="12" fill="#7d8784">DAILY VOLUME</text><g fill="#8fa8d4"><rect x="22" y="153" width="22" height="38"/><rect x="55" y="131" width="22" height="60" opacity=".8"/><rect x="88" y="104" width="22" height="87" opacity=".65"/><rect x="121" y="124" width="22" height="67" opacity=".8"/><rect x="154" y="78" width="22" height="113"/><rect x="187" y="95" width="22" height="96" opacity=".76"/><rect x="220" y="55" width="22" height="136" opacity=".9"/></g></g>
+</svg>

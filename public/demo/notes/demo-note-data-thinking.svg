@@ -1,0 +1,9 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 1200" role="img" aria-labelledby="title desc">
+  <title id="title">Metric and question editorial cover</title><desc id="desc">A typographic poster contrasting measurement and inquiry.</desc>
+  <rect width="900" height="1200" fill="#ddd8ce"/><path d="M0 782L900 538v662H0z" fill="#11151b"/>
+  <g fill="none" stroke="#667a9d" stroke-opacity=".55"><circle cx="663" cy="321" r="205"/><circle cx="663" cy="321" r="132"/><path d="M458 321h410M663 116v410"/></g><circle cx="663" cy="321" r="9" fill="#b38c55"/>
+  <g font-family="monospace" font-size="16" letter-spacing="3" fill="#4c4a46"><text x="58" y="72">NOTE / DATA PRACTICE</text><text x="690" y="72">017</text></g>
+  <text x="58" y="278" font-family="serif" font-size="112" fill="#151515">A metric</text><text x="58" y="382" font-family="serif" font-size="112" font-style="italic" fill="#151515">is not</text><text x="58" y="486" font-family="serif" font-size="112" fill="#151515">a question.</text>
+  <text x="58" y="895" font-family="sans-serif" font-size="27" fill="#d8d5ce">What uncertainty is actually</text><text x="58" y="934" font-family="sans-serif" font-size="27" fill="#d8d5ce">worth reducing?</text>
+  <path d="M58 1015h784" stroke="#d8d5ce" stroke-opacity=".2"/><text x="58" y="1065" font-family="monospace" font-size="15" letter-spacing="2" fill="#8fa8d4">PHẠM CÔNG NGUYỄN KHÔI</text>
+</svg>

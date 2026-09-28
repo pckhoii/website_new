@@ -1,0 +1,11 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 800" role="img" aria-labelledby="title desc">
+  <title id="title">Campaign performance demo</title><desc id="desc">A restrained marketing effectiveness and audience composition study.</desc>
+  <rect width="1200" height="800" fill="#11100f"/>
+  <rect x="58" y="56" width="1084" height="688" fill="#e7e1d6"/>
+  <g font-family="monospace" fill="#4f4b45" font-size="13" letter-spacing="2"><text x="90" y="96">CAMPAIGN PERFORMANCE ATLAS</text><text x="1002" y="96">Q2 / 24</text></g>
+  <path d="M90 126h1020" stroke="#221f1b" stroke-opacity=".25"/>
+  <g transform="translate(90 164)"><text font-family="sans-serif" font-size="14" fill="#65605a">EFFICIENT REACH</text><text y="74" font-family="serif" font-size="70" fill="#171513">1.84×</text><text y="105" font-family="sans-serif" font-size="13" fill="#726d66">return against qualified attention</text></g>
+  <g transform="translate(470 160)"><circle cx="128" cy="128" r="108" fill="none" stroke="#d2ccc1" stroke-width="32"/><path d="M128 20a108 108 0 0 1 97 155" fill="none" stroke="#617a9d" stroke-width="32"/><path d="M225 175a108 108 0 0 1-67 57" fill="none" stroke="#b18c58" stroke-width="32"/><text x="93" y="135" font-family="serif" font-size="36" fill="#171513">68%</text><text x="80" y="160" font-family="monospace" font-size="10" fill="#6b665f">QUALIFIED</text></g>
+  <g transform="translate(795 160)"><text font-family="monospace" font-size="12" fill="#6b665f">CHANNEL QUALITY</text><g transform="translate(0 42)" fill="#617a9d"><rect width="238" height="22" opacity=".18"/><rect width="184" height="22"/><rect y="48" width="238" height="22" opacity=".18"/><rect y="48" width="149" height="22" opacity=".72"/><rect y="96" width="238" height="22" opacity=".18"/><rect y="96" width="205" height="22" opacity=".88"/></g></g>
+  <g transform="translate(90 482)"><path d="M0 174C88 143 150 160 210 108s130 18 201-28 121-70 188-25 145 4 223-54 118-3 196-32" fill="none" stroke="#2c2925" stroke-width="2"/><path d="M0 190h1020M0 128h1020M0 66h1020" stroke="#2c2925" stroke-opacity=".12"/><g fill="#b18c58"><circle cx="210" cy="108" r="5"/><circle cx="599" cy="55" r="5"/><circle cx="900" cy="1" r="5"/></g><text y="226" font-family="monospace" font-size="12" fill="#77716a">ATTENTION QUALITY / EIGHT-WEEK SIGNAL</text></g>
+</svg>

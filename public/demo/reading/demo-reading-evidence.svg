@@ -1,0 +1,9 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 1200" role="img" aria-labelledby="title desc">
+  <title id="title">Evidence editorial cover</title><desc id="desc">A dense but clear quantitative information study.</desc>
+  <rect width="900" height="1200" fill="#e4ded3"/>
+  <g stroke="#22201d" stroke-opacity=".18"><path d="M70 160h760M70 310h760M70 460h760M70 610h760M70 760h760M70 910h760M190 100v980M350 100v980M510 100v980M670 100v980"/></g>
+  <path d="M70 897C178 842 231 912 331 728s173-62 260-217 151-131 239-315" fill="none" stroke="#202c3d" stroke-width="5"/>
+  <g fill="#a77d49"><circle cx="331" cy="728" r="9"/><circle cx="591" cy="511" r="9"/><circle cx="830" cy="196" r="9"/></g>
+  <g font-family="monospace" font-size="14" letter-spacing="3" fill="#4d4a45"><text x="70" y="68">READING / EVIDENCE</text><text x="70" y="1110">DENSITY WITH PURPOSE</text></g>
+  <text x="70" y="245" font-family="serif" font-size="84" fill="#171614">Show the</text><text x="70" y="332" font-family="serif" font-size="84" font-style="italic" fill="#171614">evidence.</text>
+</svg>

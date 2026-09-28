@@ -1,0 +1,8 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 1200" role="img" aria-labelledby="title desc">
+  <title id="title">Systems editorial cover</title><desc id="desc">Interlocking loops and leverage points on a dark cover.</desc>
+  <rect width="900" height="1200" fill="#10151d"/>
+  <g fill="none" stroke="#91a9d0" stroke-opacity=".42"><ellipse cx="444" cy="566" rx="322" ry="197" transform="rotate(-17 444 566)"/><ellipse cx="444" cy="566" rx="218" ry="325" transform="rotate(31 444 566)"/><circle cx="444" cy="566" r="130"/></g>
+  <g fill="#91a9d0"><circle cx="164" cy="418" r="8"/><circle cx="666" cy="313" r="7"/><circle cx="731" cy="693" r="9"/></g><circle cx="398" cy="696" r="9" fill="#c6a16b"/>
+  <g font-family="monospace" font-size="15" letter-spacing="3" fill="#8993a1"><text x="58" y="68">READING / SYSTEMS</text><text x="58" y="1116">FEEDBACK / LEVERAGE / WHOLES</text></g>
+  <text x="58" y="193" font-family="serif" font-size="92" fill="#ede9df">Seeing</text><text x="58" y="282" font-family="serif" font-size="92" font-style="italic" fill="#ede9df">relationships.</text>
+</svg>

@@ -1,0 +1,11 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 900" role="img" aria-labelledby="title desc">
+  <title id="title">Đà Lạt morning study</title><desc id="desc">A quiet misty hillside with modern concrete architecture.</desc>
+  <defs><linearGradient id="sky" y2="1"><stop stop-color="#8b9aa3"/><stop offset=".55" stop-color="#536069"/><stop offset="1" stop-color="#272d31"/></linearGradient><filter id="fog"><feGaussianBlur stdDeviation="26"/></filter><filter id="grain"><feTurbulence baseFrequency=".7" numOctaves="3" seed="23"/><feColorMatrix values="1 0 0 0 0 0 1 0 0 0 0 0 1 0 0 0 0 .13 0"/></filter></defs>
+  <rect width="1200" height="900" fill="url(#sky)"/>
+  <circle cx="886" cy="226" r="42" fill="#d2b88f" opacity=".5"/>
+  <path d="M0 509C166 421 269 469 426 391s259-23 389 15 228-48 385-80v574H0z" fill="#354047"/>
+  <path d="M0 644C171 535 327 610 497 518s330-62 478 17 162 45 225 11v354H0z" fill="#1b2226"/>
+  <g transform="translate(538 385)"><path d="M0 141L194 0h254v299H0z" fill="#b7b3aa"/><rect x="226" y="46" width="177" height="186" fill="#24292c"/><rect x="258" y="78" width="58" height="117" fill="#6e7c83"/><path d="M0 141h194V0" fill="none" stroke="#e0dcd2" stroke-opacity=".5"/></g>
+  <g fill="#d7dad7" opacity=".18" filter="url(#fog)"><ellipse cx="293" cy="505" rx="295" ry="62"/><ellipse cx="890" cy="478" rx="330" ry="70"/></g>
+  <rect width="1200" height="900" filter="url(#grain)" opacity=".45"/>
+</svg>

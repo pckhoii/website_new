@@ -1,0 +1,9 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 1200" role="img" aria-labelledby="title desc">
+  <title id="title">City information system</title><desc id="desc">A layered urban route and signal map.</desc>
+  <rect width="900" height="1200" fill="#d8d2c7"/>
+  <g fill="none" stroke="#292724" stroke-opacity=".2" stroke-width="2"><path d="M-40 274C175 211 247 348 425 272s278-35 533-151"/><path d="M-25 901C158 767 236 850 363 703s296-174 583-98"/><path d="M191 -40C282 162 229 300 338 457s135 339 99 793"/><path d="M698 -40C615 170 747 325 629 502s-73 441 49 745"/></g>
+  <path d="M77 955C198 813 296 873 379 715s188-124 274-281 89-185 183-279" fill="none" stroke="#617a9d" stroke-width="6"/>
+  <g fill="#617a9d"><circle cx="77" cy="955" r="10"/><circle cx="379" cy="715" r="10"/><circle cx="653" cy="434" r="10"/><circle cx="836" cy="155" r="10"/></g><g fill="none" stroke="#a77d49"><circle cx="379" cy="715" r="34"/><circle cx="653" cy="434" r="25"/></g>
+  <g font-family="monospace" font-size="15" letter-spacing="3" fill="#4d4a45"><text x="58" y="66">EVERYDAY SYSTEM / CITY</text><text x="58" y="1096">ROUTES / QUEUES / SIGNS / SHORTCUTS</text></g>
+  <text x="58" y="210" font-family="serif" font-size="85" fill="#171614">The city is</text><text x="58" y="293" font-family="serif" font-size="85" font-style="italic" fill="#171614">information</text><text x="58" y="376" font-family="serif" font-size="85" fill="#171614">in motion.</text>
+</svg>

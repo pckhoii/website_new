@@ -1,0 +1,27 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 1000" role="img" aria-labelledby="title desc">
+  <title id="title">Personal Universe signal map</title>
+  <desc id="desc">An abstract archive map connecting work, notes, reading, and places.</desc>
+  <defs>
+    <radialGradient id="haze" cx="58%" cy="44%" r="60%"><stop offset="0" stop-color="#58709a" stop-opacity=".32"/><stop offset=".58" stop-color="#151c29" stop-opacity=".16"/><stop offset="1" stop-color="#080b10" stop-opacity="0"/></radialGradient>
+    <linearGradient id="line" x1="0" x2="1"><stop stop-color="#8fa8d4" stop-opacity=".08"/><stop offset=".52" stop-color="#b7c7e2" stop-opacity=".48"/><stop offset="1" stop-color="#8fa8d4" stop-opacity=".05"/></linearGradient>
+    <filter id="grain"><feTurbulence baseFrequency=".74" numOctaves="3" seed="17" type="fractalNoise"/><feColorMatrix values="1 0 0 0 0 0 1 0 0 0 0 0 1 0 0 0 0 0 .12 0"/></filter>
+  </defs>
+  <rect width="1200" height="1000" fill="#080b10"/>
+  <rect width="1200" height="1000" fill="url(#haze)"/>
+  <g fill="none" stroke="url(#line)">
+    <ellipse cx="635" cy="485" rx="455" ry="270" transform="rotate(-11 635 485)"/>
+    <ellipse cx="635" cy="485" rx="330" ry="190" transform="rotate(14 635 485)" stroke-opacity=".5"/>
+    <path d="M117 705C285 564 405 688 520 548S802 267 1091 358"/>
+    <path d="M192 184C332 292 357 426 516 458S808 407 1019 671" stroke-opacity=".34"/>
+  </g>
+  <g fill="#8fa8d4">
+    <circle cx="241" cy="600" r="5"/><circle cx="511" cy="453" r="4"/><circle cx="893" cy="313" r="5"/><circle cx="1018" cy="671" r="3"/>
+  </g>
+  <g fill="#c6a16b"><circle cx="720" cy="682" r="4"/><circle cx="1092" cy="358" r="3"/></g>
+  <g fill="none" stroke="#d8d5ce" stroke-opacity=".4"><circle cx="511" cy="453" r="15"/><circle cx="893" cy="313" r="21"/></g>
+  <g font-family="monospace" font-size="16" fill="#8c94a1" letter-spacing="3">
+    <text x="190" y="644">WORK / 01</text><text x="475" y="421">NOTES / 17</text><text x="846" y="278">READING / 08</text><text x="733" y="723">PLACES / 03</text>
+  </g>
+  <g opacity=".35" fill="#d8d5ce"><circle cx="103" cy="262" r="1"/><circle cx="1094" cy="175" r="1"/><circle cx="706" cy="109" r="1"/><circle cx="340" cy="851" r="1"/></g>
+  <rect width="1200" height="1000" filter="url(#grain)" opacity=".45"/>
+</svg>

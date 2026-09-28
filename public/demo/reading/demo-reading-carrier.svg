@@ -1,0 +1,9 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 1200" role="img" aria-labelledby="title desc">
+  <title id="title">Gathering stories editorial cover</title><desc id="desc">Soft abstract vessels gathering fragments and ideas.</desc>
+  <rect width="900" height="1200" fill="#c8bca9"/>
+  <path d="M109 325C212 177 389 182 481 321s217 154 311 53v501c-146 102-276 16-377-57s-213-78-306 9z" fill="#20262e"/>
+  <g fill="none" stroke="#e2dbcf" stroke-opacity=".5"><path d="M203 485c117 122 328 123 465-13"/><path d="M175 568c150 155 399 154 538-23"/><path d="M158 661c186 177 455 154 577-37"/></g>
+  <g fill="#c6a16b"><circle cx="282" cy="448" r="8"/><circle cx="511" cy="531" r="7"/><circle cx="634" cy="402" r="6"/></g>
+  <g font-family="monospace" font-size="14" letter-spacing="3" fill="#39352f"><text x="58" y="68">READING / STORY</text><text x="58" y="1110">HOLD / GATHER / CONNECT</text></g>
+  <text x="58" y="213" font-family="serif" font-size="85" fill="#171614">A story can</text><text x="58" y="299" font-family="serif" font-size="85" font-style="italic" fill="#171614">carry things.</text>
+</svg>

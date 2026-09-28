@@ -1,0 +1,15 @@
+/node_modules
+/.next
+/out
+/build
+*.log
+.DS_Store
+.env*
+!.env.example
+
+# Local browser captures and recoverable cleanup snapshots
+/.playwright-cli/
+/output/
+/.artifacts/
+/artifacts/
+/tmp/

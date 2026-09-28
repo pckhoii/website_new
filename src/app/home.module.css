@@ -1,0 +1,25 @@
+.home { background: radial-gradient(ellipse at 85% 16%, rgba(143,168,212,.055), transparent 42%), #07090d; }
+.hero { grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: clamp(2rem, 6vw, 7rem); padding-block: clamp(2rem, 4vw, 5rem); }
+.hero::before { content: ""; position: absolute; inset: 0 0 0 48%; pointer-events: none; background-image: linear-gradient(rgba(211,218,230,.018) 1px, transparent 1px), linear-gradient(90deg, rgba(211,218,230,.018) 1px, transparent 1px); background-size: 74px 74px; mask-image: radial-gradient(ellipse, black, transparent 70%); }
+.copy { position: relative; }
+.explore { display: inline-flex; align-items: center; gap: 1.5rem; min-height: 44px; margin-top: 2rem; border-bottom: 1px solid var(--signal-amber); color: var(--star-100); font-size: .8rem; }
+.explore svg { color: var(--signal-amber); transition: transform 200ms ease; }
+.explore:hover svg { transform: translate(3px,-3px); }
+.explore:focus-visible { outline: 2px solid var(--focus); outline-offset: 5px; }
+.copy h1 { font-size: clamp(3.5rem, 6.1vw, 6.5rem); }
+.collections { padding: 3rem var(--world-pad) 0; }
+.indexHeading { display: flex; align-items: baseline; justify-content: space-between; gap: 1rem; padding-bottom: 1.5rem; border-bottom: 1px solid var(--orbit-line); }
+.indexHeading h2 { font: 400 1.6rem var(--font-display), serif; margin: 0; color: var(--star-100); }
+.indexHeading p { margin: 0; font: .62rem var(--font-mono), monospace; color: var(--star-400); }
+.entry { display: grid; grid-template-columns: 3rem 1fr 1fr 1.5rem; align-items: center; gap: 1.5rem; min-height: 108px; padding: 1.25rem 0; border-bottom: 1px solid var(--orbit-line); color: var(--star-200); }
+.number { font: .65rem var(--font-mono), monospace; color: var(--signal-amber); }
+.entry h3 { margin: 0; font: 400 clamp(1.4rem, 2.3vw, 2.2rem) var(--font-display), serif; transition: color 180ms; }
+.entry p { max-width: 44ch; margin: 0; font-size: .875rem; line-height: 1.65; color: var(--star-400); }
+.entry > svg { width: 18px; color: var(--star-400); transition: transform 200ms, color 200ms; }
+.entry:is(:hover,:focus-visible) h3, .entry:is(:hover,:focus-visible) > svg { color: var(--signal-blue); }
+.entry:is(:hover,:focus-visible) > svg { transform: translate(3px,-3px); }
+.entry:focus-visible { outline: 2px solid var(--focus); outline-offset: 5px; }
+@media(min-width: 1700px) { .hero { padding-inline: max(var(--world-pad), calc((100vw - 1700px)/2)); } }
+@media(max-width: 1000px) { .hero { grid-template-columns: 1fr 1fr; gap: 1rem; } .copy h1 { font-size: clamp(3rem, 6.8vw, 5rem); } }
+@media(max-width: 700px) { .hero { grid-template-columns: 1fr; padding-top: 3.5rem; gap: 1.5rem; } .copy h1 { font-size: clamp(3.3rem, 12vw, 5rem); } .hero::before { inset: 40% 0 0; } .entry { grid-template-columns: 1.5rem 1fr 1rem; gap: .75rem; } .entry p { grid-column: 2; grid-row: 2; } .entry > svg { grid-column: 3; grid-row: 1; } .indexHeading { align-items: start; flex-direction: column; gap: .5rem; } }
+@media(prefers-reduced-motion: reduce) { .entry h3, .entry > svg { transition: none; } }

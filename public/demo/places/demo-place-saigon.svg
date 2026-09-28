@@ -1,0 +1,11 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 900" role="img" aria-labelledby="title desc">
+  <title id="title">Saigon street study</title><desc id="desc">A warm layered street scene with signs, awnings, and passing motion.</desc>
+  <defs><linearGradient id="light" x2="1" y2="1"><stop stop-color="#aa7a51"/><stop offset=".45" stop-color="#574b43"/><stop offset="1" stop-color="#17191b"/></linearGradient><filter id="grain"><feTurbulence baseFrequency=".76" numOctaves="3" seed="31"/><feColorMatrix values="1 0 0 0 0 0 1 0 0 0 0 0 1 0 0 0 0 .14 0"/></filter></defs>
+  <rect width="1200" height="900" fill="url(#light)"/>
+  <rect x="0" y="130" width="332" height="545" fill="#252a2d"/><rect x="332" y="58" width="402" height="617" fill="#4c4946"/><rect x="734" y="171" width="466" height="504" fill="#202326"/>
+  <g fill="#8d999d" opacity=".45"><rect x="55" y="201" width="93" height="173"/><rect x="182" y="201" width="93" height="173"/><rect x="394" y="143" width="124" height="222"/><rect x="554" y="143" width="124" height="222"/><rect x="812" y="237" width="122" height="174"/><rect x="974" y="237" width="122" height="174"/></g>
+  <path d="M0 515h1200v179H0z" fill="#9b704d" opacity=".72"/><path d="M0 594h1200v306H0z" fill="#252424"/>
+  <g transform="translate(433 458)"><rect width="352" height="91" fill="#d3c8b4"/><text x="35" y="58" font-family="sans-serif" font-size="29" letter-spacing="5" fill="#2c2a28">MORNING / 07</text></g>
+  <g opacity=".75"><path d="M86 728h243l44 78H21z" fill="#161719"/><circle cx="112" cy="811" r="31" fill="#090a0b"/><circle cx="306" cy="811" r="31" fill="#090a0b"/><path d="M821 707h188l68 99H758z" fill="#111315"/><circle cx="818" cy="814" r="31"/><circle cx="1016" cy="814" r="31"/></g>
+  <rect width="1200" height="900" filter="url(#grain)"/>
+</svg>
