@@ -1,52 +1,43 @@
-import { ArrowUpRight, Radio } from "lucide-react";
+import { ArrowDown, ArrowUpRight, Radio } from "lucide-react";
 import Link from "next/link";
-import { ArchiveFooter, RecordLink } from "@/components/archive-ui";
-import { ObservatoryPortrait } from "@/components/observatory-portrait";
+import { ArchiveFooter } from "@/components/archive-ui";
+import { PersonalCosmos, ConstellationGarden, OrbitSketch } from "@/components/personal-cosmos";
 import { LocalizedText } from "@/components/localized-text";
 import { SiteHeader } from "@/components/site-header";
-import { notes, reading, siteContent, work } from "@/lib/content";
+
 import styles from "./home.module.css";
 
 const gateways = [
-  { index: "01", href: "/work", count: "03 case files", title: { en: "Work archive", vi: "Kho công việc" }, note: { en: "Systems built from operational questions.", vi: "Những hệ thống bắt đầu từ câu hỏi vận hành." }, mark: "lineage" },
-  { index: "02", href: "/notes", count: "04 entries", title: { en: "Field notes", vi: "Ghi chép thực địa" }, note: { en: "Unfinished thinking about data, design, and life.", vi: "Những suy nghĩ còn mở về dữ liệu, thiết kế và đời sống." }, mark: "observation-slip" },
-  { index: "03", href: "/reading", count: "03 volumes", title: { en: "Reading ledger", vi: "Sổ đọc" }, note: { en: "Ideas kept close enough to return to.", vi: "Những ý tưởng được giữ đủ gần để quay lại." }, mark: "moon-index" },
-  { index: "04", href: "/places", count: "02 coordinates", title: { en: "Field atlas", vi: "Bản đồ nơi chốn" }, note: { en: "Places, weather, routes, and remembered scale.", vi: "Nơi chốn, thời tiết, tuyến đường và tỉ lệ còn nhớ." }, mark: "route-map" },
-  { index: "05", href: "/about", count: "dossier", title: { en: "About Khoi", vi: "Về Khôi" }, note: { en: "Experience, capabilities, and the person behind the systems.", vi: "Kinh nghiệm, năng lực và con người phía sau hệ thống." }, mark: "constellation-k" },
+  { href: "/work", title: { en: "Things I build", vi: "Những điều mình xây" }, note: { en: "Turning messy questions into useful data systems.", vi: "Từ những câu hỏi ngổn ngang đến hệ thống dữ liệu hữu ích." }, kind: "work", meta: "SQL · PYTHON · BI" },
+  { href: "/notes", title: { en: "Thoughts in orbit", vi: "Ý nghĩ trên quỹ đạo" }, note: { en: "A place for ideas that haven’t quite landed yet.", vi: "Một chỗ cho những ý tưởng còn chưa kịp hạ cánh." }, kind: "notes", meta: "DATA · DESIGN · LIFE" },
+  { href: "/reading", title: { en: "A pocket of ideas", vi: "Một túi đầy ý tưởng" }, note: { en: "Books that change how I see the world.", vi: "Những cuốn sách làm mình nhìn thế giới khác đi." }, kind: "reading", meta: "BOOKS · MARGINALIA" },
+  { href: "/places", title: { en: "Away from the desk", vi: "Rời bàn làm việc" }, note: { en: "Some coordinates. A lot of little memories.", vi: "Vài tọa độ. Và rất nhiều ký ức nho nhỏ." }, kind: "places", meta: "PLACES · MEMORIES" },
 ] as const;
 
 export default function HomePage() {
   return <main id="top" className={`world-page world-home ${styles.home}`}>
-    <a className="skip-link" href="#collections">Skip to collections</a>
+    <a className="skip-link" href="#collections">Skip to collections / Đến các góc nhỏ</a>
     <SiteHeader />
-    <section className={`desk-intro ${styles.hero}`}>
-      <div className={`desk-copy ${styles.copy}`}>
-        <p className="mono-label"><Radio size={13} aria-hidden="true" /><LocalizedText text={{en: "PERSONAL ARCHIVE · SÀI GÒN", vi: "KHO LƯU TRỮ CÁ NHÂN · SÀI GÒN"}} /></p>
-        <h1><span>{siteContent.hero.name}</span><LocalizedText text={siteContent.hero.headlineOne} /></h1>
-        <p><LocalizedText text={siteContent.hero.body} /></p>
-        <div className="desk-status"><span className="signal-dot" /><span><strong><LocalizedText text={siteContent.hero.role} /></strong><small>FSS JSC · APR 2025—PRESENT</small></span></div>
-        <Link href="/work" className={styles.explore}><LocalizedText text={{en: "Explore my work", vi: "Xem công việc của mình"}} /><ArrowUpRight size={17} aria-hidden="true" /></Link>
+    <section className={styles.hero} aria-labelledby="home-title">
+      <div className={styles.copy}>
+        <p className={styles.eyebrow}><span className={styles.sparkle} aria-hidden="true">✳</span><LocalizedText text={{ en: "A SMALL CORNER OF THE INTERNET", vi: "MỘT GÓC NHỎ TRÊN INTERNET" }} /></p>
+        <p className={styles.hello}><LocalizedText text={{ en: "Hello, I’m Khoi.", vi: "Chào bạn, mình là Khôi." }} /><svg viewBox="0 0 76 35" fill="none" aria-hidden="true"><path d="M2 13C24 2 53 5 65 21M55 18l12 6-2-13" /></svg></p>
+        <h1 id="home-title"><LocalizedText text={{ en: "A little", vi: "Một vũ trụ" }} /><br /><em><LocalizedText text={{ en: "universe.", vi: "nho nhỏ." }} /></em><span className={styles.titleStar} aria-hidden="true">✧</span></h1>
+        <p className={styles.intro}><LocalizedText text={{ en: "Built from data, curious thoughts, well-loved books, and the places that stay with me.", vi: "Được ghép từ dữ liệu, những ý nghĩ tò mò, vài cuốn sách thương, và những nơi mình nhớ." }} /></p>
+        <div className={styles.actions}><Link href="/work" className={styles.primary}><LocalizedText text={{ en: "Discover my work", vi: "Khám phá công việc" }} /><ArrowUpRight size={17} aria-hidden="true" /></Link><a href="#collections" className={styles.secondary}><LocalizedText text={{ en: "Wander a little", vi: "Dạo một vòng nhé" }} /><ArrowDown size={15} aria-hidden="true" /></a></div>
+        <div className={styles.identity}><Radio size={13} aria-hidden="true" /><span>DATA ENGINEER / ANALYST<span className={styles.identityPlace}>SÀI GÒN, EARTH</span></span></div>
       </div>
-      <ObservatoryPortrait />
+      <PersonalCosmos />
+      <div className={styles.heroFoot}><span><span className="signal-dot" /><LocalizedText text={{ en: "Always a work in progress. Just like me.", vi: "Vẫn đang lớn lên từng ngày. Giống mình." }} /></span><span className={styles.handnote}><LocalizedText text={{ en: "Make yourself at home ↗", vi: "Cứ tự nhiên như ở nhà ↗" }} /></span></div>
     </section>
-
-    <section className={styles.collections} id="collections" aria-label="Archive collections">
-      <header className={styles.indexHeading}><h2><LocalizedText text={{en: "Inside the archive", vi: "Trong kho lưu trữ"}} /></h2><p><LocalizedText text={{en: "WORK, IDEAS & THE DAYS BETWEEN", vi: "CÔNG VIỆC, Ý TƯỞNG & ĐỜI SỐNG"}} /></p></header>
-      {gateways.map((gateway) => <Link className={styles.entry} href={gateway.href} key={gateway.href}>
-        <span className={styles.number}>{gateway.index}</span>
+    <section className={styles.collections} id="collections" aria-labelledby="collections-title">
+      <header className={styles.indexHeading}><div><p className={styles.eyebrow}><LocalizedText text={{ en: "DIFFERENT ORBITS. SAME CURIOSITY.", vi: "NHIỀU QUỸ ĐẠO. CHUNG MỘT SỰ TÒ MÒ." }} /></p><h2 id="collections-title"><LocalizedText text={{ en: "What makes up my world.", vi: "Những mảnh ghép của mình." }} /></h2></div><p className={styles.sectionNote}><LocalizedText text={{ en: "Pick somewhere to land.", vi: "Chọn một nơi để hạ cánh." }} /></p></header>
+      <div className={styles.cardGrid}>{gateways.map((gateway) => <Link className={styles.card} data-kind={gateway.kind} href={gateway.href} key={gateway.href}>
+        <div className={styles.cardTop}><span>{gateway.meta}</span><ArrowUpRight size={19} aria-hidden="true" /></div><OrbitSketch kind={gateway.kind} />
         <h3><LocalizedText text={gateway.title} /></h3><p><LocalizedText text={gateway.note} /></p>
-        <ArrowUpRight size={19} aria-hidden="true" />
-      </Link>)}
+      </Link>)}</div>
+      <Link href="/about" className={styles.aboutLink}><span className={styles.smallStar} aria-hidden="true">✧</span><LocalizedText text={{ en: "And the human behind this little universe?", vi: "Còn người đứng sau vũ trụ nho nhỏ này?" }} /><span><LocalizedText text={{ en: "Meet Khoi", vi: "Làm quen với Khôi" }} /><ArrowUpRight size={16} aria-hidden="true" /></span></Link>
     </section>
-
-    <section className="desk-recent" aria-labelledby="recent-signals-title">
-      <header><p className="mono-label">LATEST TRANSMISSIONS / 03</p><h2 id="recent-signals-title"><LocalizedText text={siteContent.recent.title} /></h2></header>
-      <div className="record-list">
-        <RecordLink href={`/work/${work[0].slug}`} index="01" label={{ en: "Case file", vi: "Hồ sơ" }} title={work[0].title} meta={work[0].year} />
-        <RecordLink href={`/notes#${notes[0].slug}`} index="02" label={{ en: "Field note", vi: "Ghi chép" }} title={notes[0].title} meta={notes[0].date} />
-        <RecordLink href="/reading" index="03" label={{ en: "Reading", vi: "Đọc" }} title={{ en: reading[0].title, vi: reading[0].title }} meta={reading[0].status} />
-      </div>
-    </section>
-    <ArchiveFooter />
+    <ConstellationGarden /><ArchiveFooter />
   </main>;
 }

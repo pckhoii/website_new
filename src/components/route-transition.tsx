@@ -1,209 +1,139 @@
 "use client";
 
-import { motion } from "motion/react";
 import { usePathname, useRouter } from "next/navigation";
 import { type MouseEvent as ReactMouseEvent, type ReactNode, useCallback, useEffect, useRef, useState } from "react";
-import observatoryArtwork from "@/universe_of_signals_observatory_loader_layered.svg";
+import { LocalizedText } from "./localized-text";
 
-type TransitionPhase = "idle" | "covering" | "holding" | "revealing";
-type SignalStatus = "SEARCH" | "ACQUIRE" | "LOCK" | "TRANSMIT";
+import styles from "./route-transition.module.css";
 
-const destinations = ["home", "work", "notes", "reading", "places", "about"] as const;
-type DestinationKey = (typeof destinations)[number];
+type Phase = "idle" | "covering" | "holding" | "revealing";
+type Destination = "home" | "work" | "notes" | "reading" | "places" | "about";
 
-const destinationLabels: Record<DestinationKey, string> = {
-  home: "00 / ORIGIN",
-  work: "01 / WORK",
-  notes: "02 / NOTES",
-  reading: "03 / READING",
-  places: "04 / PLACES",
-  about: "05 / ABOUT",
-};
-
-function routeKey(pathname: string): DestinationKey {
-  const segment = pathname.split("/").filter(Boolean)[0];
-  return destinations.includes(segment as DestinationKey) ? segment as DestinationKey : "home";
+const journeys = {
+  home: { label: { en: "BACK HOME", vi: "VỀ NHÀ THÔI" } },
+  work: { label: { en: "A LITTLE POSSIBILITY", vi: "MỘT CHÚT KHẢ NĂNG" } },
+  notes: { label: { en: "A THOUGHT IN ORBIT", vi: "MỘT Ý NGHĨ TRÊN QUỸ ĐẠO" } },
+  reading: { label: { en: "ONE MORE CHAPTER", vi: "THÊM MỘT CHƯƠNG NỮA" } },
+  places: { label: { en: "A LITTLE FURTHER", vi: "ĐI XA THÊM MỘT CHÚT" } },
+  about: { label: { en: "HELLO, I'M KHOI", vi: "CHÀO BẠN, MÌNH LÀ KHÔI" } },
+} as const;
+const MINIMUM_JOURNEY_MS = 800;
+const REVEAL_MS = 220;
+function routeKey(pathname: string): Destination {
+  const key = pathname.split("/").filter(Boolean)[0] ?? "home";
+  return Object.hasOwn(journeys, key) ? key as Destination : "home";
 }
+function normalizePath(pathname: string) { return pathname.length > 1 ? pathname.replace(/\/$/, "") : pathname; }
 
-function normalizePath(pathname: string) {
-  return pathname.length > 1 ? pathname.replace(/\/$/, "") : pathname;
+function OrbitJourney() {
+  return <svg className={styles.sketch} viewBox="0 0 200 180" fill="none" aria-hidden="true">
+    <circle cx="100" cy="86" r="62" stroke="currentColor" strokeWidth=".7" strokeDasharray="1 6" opacity=".4" />
+    <path d="M100 17v7M100 148v7M31 86h7M162 86h7" stroke="currentColor" strokeWidth=".8" opacity=".45" />
+    <g className={styles.planet} stroke="currentColor" strokeWidth="1">
+      <circle cx="100" cy="86" r="24" />
+      <path d="M80 74c-26 8-31 16-24 20 10 6 39 3 65-5 25-8 34-16 26-20-4-2-12-2-21-1" />
+      <path d="M93 80v2M103 78v2M96 89q4 3 8-1" strokeLinecap="round" opacity=".75" />
+    </g>
+    <g className={styles.traveller}>
+      <path d="M0-7 2-2 7 0 2 2 0 7-2 2-7 0-2-2Z" fill="#07141d" stroke="#ecc09c" strokeWidth="1" strokeLinejoin="round" />
+    </g>
+  </svg>;
 }
-
-function SignalObservatory({ status }: { status: SignalStatus }) {
-  const isAcquire = status === "ACQUIRE";
-  const isLock = status === "LOCK";
-  const isTransmit = status === "TRANSMIT";
-  const layer = (id: string) => `${observatoryArtwork.src}#${id}`;
-
-  return <div className="calibration-aperture" aria-hidden="true">
-    <svg viewBox="420 270 832 390">
-      <motion.g
-        className="calibration-sketch"
-        initial={false}
-        animate={isTransmit
-          ? { scaleX: 1.32, scaleY: .008, opacity: .9 }
-          : isLock
-            ? { scale: .96, opacity: .98 }
-            : { scale: 1, opacity: isAcquire ? .88 : .62 }}
-        transition={{ duration: isTransmit ? .14 : .2, ease: [.16, 1, .3, 1] }}
-      >
-        <use href={layer("layer-glow")} />
-        <motion.g initial={false} animate={{ opacity: isLock ? 1 : .72 }} transition={{ duration: .3 }}>
-          <use href={layer("layer-orbits")} />
-        </motion.g>
-        <use href={layer("layer-observatory-base")} />
-        <use href={layer("layer-dome")} />
-        <use href={layer("telescope-mount")} />
-        <motion.g
-          className="calibration-layered-scope"
-          initial={false}
-          animate={{ rotate: isAcquire || isLock || isTransmit ? 0 : 34 }}
-          transition={{ duration: isAcquire ? .46 : .22, ease: [.22, 1, .36, 1] }}
-        >
-          <use href={layer("telescope-tube")} />
-        </motion.g>
-        <use href={layer("layer-antenna")} />
-        <use href={layer("layer-markers")} />
-      </motion.g>
-      <motion.circle
-        className="calibration-point"
-        cx="581"
-        cy="553"
-        r="4.1"
-        initial={false}
-        animate={isAcquire
-          ? {
-              x: [0, 22, 72, 145, 232, 312, 365],
-              y: [0, -72, -137, -190, -225, -238, -238],
-              opacity: 1,
-              r: 4.5,
-            }
-          : {
-              x: isLock || isTransmit ? 365 : 0,
-              y: isLock || isTransmit ? -238 : 0,
-              opacity: isTransmit ? 0 : 1,
-              r: isLock ? 5.2 : 4.1,
-            }}
-        transition={{ duration: isAcquire ? .42 : .22, ease: isAcquire ? [.4, 0, .2, 1] : [.22, 1, .36, 1] }}
-      />
-    </svg>
-  </div>;
-}
-
 export function RouteTransition({ children }: { children: ReactNode }) {
   const pathname = usePathname();
   const router = useRouter();
-  const [phase, setPhase] = useState<TransitionPhase>("idle");
-  const [status, setStatus] = useState<SignalStatus>("SEARCH");
-  const [destination, setDestination] = useState<DestinationKey>(() => routeKey(pathname));
-  const phaseRef = useRef<TransitionPhase>("idle");
-  const pendingPath = useRef<string | null>(null);
+  const [phase, setPhase] = useState<Phase>("idle");
+
+  const [destination, setDestination] = useState<Destination>(() => routeKey(pathname));
+  const [slow, setSlow] = useState(false);
+  const [journeyId, setJourneyId] = useState(0);
+  const phaseRef = useRef<Phase>("idle");
+  const pending = useRef<{ pathname: string; href: string; pushed: boolean } | null>(null);
   const startedAt = useRef(0);
   const timers = useRef<number[]>([]);
+  const busy = phase !== "idle";
 
-  const changePhase = useCallback((next: TransitionPhase) => {
-    phaseRef.current = next;
-    setPhase(next);
-  }, []);
-
-  const clearTimers = useCallback(() => {
-    timers.current.forEach((timer) => window.clearTimeout(timer));
-    timers.current = [];
-  }, []);
-
-  const schedule = useCallback((callback: () => void, delay: number) => {
-    timers.current.push(window.setTimeout(callback, delay));
-  }, []);
-
-  const beginSignalSequence = useCallback((nextDestination: DestinationKey) => {
+  const changePhase = useCallback((next: Phase) => { phaseRef.current = next; setPhase(next); }, []);
+  const clearTimers = useCallback(() => { timers.current.forEach(window.clearTimeout); timers.current = []; }, []);
+  const schedule = useCallback((callback: () => void, delay: number) => { timers.current.push(window.setTimeout(callback, delay)); }, []);
+  const beginJourney = useCallback((nextDestination: Destination) => {
     clearTimers();
     startedAt.current = performance.now();
     setDestination(nextDestination);
-    setStatus("SEARCH");
+    setJourneyId(current => current + 1);
+    setSlow(false);
     changePhase("covering");
-    schedule(() => setStatus("ACQUIRE"), 220);
-    schedule(() => setStatus("LOCK"), 650);
+
+    schedule(() => setSlow(true), 3000);
   }, [changePhase, clearTimers, schedule]);
+  const finishJourney = useCallback(() => {
+    clearTimers(); setSlow(false);
+    const elapsed = performance.now() - startedAt.current;
 
-  const finishSignalSequence = useCallback((minimumElapsed = 1180, releaseDuration = 300) => {
-    const remaining = Math.max(0, minimumElapsed - (performance.now() - startedAt.current));
-    schedule(() => {
-      setStatus("TRANSMIT");
-      changePhase("revealing");
-      schedule(() => changePhase("idle"), releaseDuration);
-    }, remaining);
-  }, [changePhase, schedule]);
-
-  useEffect(() => {
-    if (!pendingPath.current || normalizePath(pendingPath.current) !== normalizePath(pathname)) return;
-    pendingPath.current = null;
-    finishSignalSequence();
-  }, [finishSignalSequence, pathname]);
+    schedule(() => { changePhase("revealing"); schedule(() => changePhase("idle"), REVEAL_MS); }, Math.max(180, MINIMUM_JOURNEY_MS - elapsed));
+  }, [changePhase, clearTimers, schedule]);
+  const skipJourney = useCallback(() => {
+    clearTimers();
+    const next = pending.current;
+    pending.current = null;
+    if (next && !next.pushed) router.push(next.href);
+    changePhase("idle");
+  }, [changePhase, clearTimers, router]);
 
   useEffect(() => {
-    const handleHistoryNavigation = () => {
-      if (phaseRef.current !== "idle" || window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
-      beginSignalSequence(routeKey(window.location.pathname));
-      finishSignalSequence(1000);
+    if (!pending.current || normalizePath(pending.current.pathname) !== normalizePath(pathname)) return;
+    pending.current = null;
+    finishJourney();
+  }, [finishJourney, pathname]);
+  useEffect(() => {
+    const handleHistory = () => {
+      if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) { skipJourney(); return; }
+      pending.current = null;
+      beginJourney(routeKey(window.location.pathname));
+      finishJourney();
     };
+    const handleEscape = (event: KeyboardEvent) => { if (event.key === "Escape" && phaseRef.current !== "idle") skipJourney(); };
+    window.addEventListener("popstate", handleHistory);
+    window.addEventListener("keydown", handleEscape);
+    return () => { window.removeEventListener("popstate", handleHistory); window.removeEventListener("keydown", handleEscape); clearTimers(); };
+  }, [beginJourney, clearTimers, finishJourney, skipJourney]);
+  useEffect(() => {
+    if (!busy) return;
+    const overflow = document.body.style.overflow;
+    document.body.style.overflow = "hidden";
+    return () => { document.body.style.overflow = overflow; };
+  }, [busy]);
 
-    window.addEventListener("popstate", handleHistoryNavigation);
-    return () => {
-      window.removeEventListener("popstate", handleHistoryNavigation);
-      clearTimers();
-    };
-  }, [beginSignalSequence, clearTimers, finishSignalSequence]);
-
-  const handleClick = (event: ReactMouseEvent<HTMLDivElement>) => {
+  function handleClick(event: ReactMouseEvent<HTMLDivElement>) {
     if (event.defaultPrevented || event.button !== 0 || event.metaKey || event.ctrlKey || event.shiftKey || event.altKey) return;
-
-    const link = (event.target as HTMLElement).closest<HTMLAnchorElement>("a[href]");
-    if (!link || link.target === "_blank" || link.hasAttribute("download")) return;
-
+    const target = event.target;
+    const link = target instanceof Element ? target.closest<HTMLAnchorElement>("a[href]") : null;
+    if (!link || (link.target && link.target !== "_self") || link.hasAttribute("download")) return;
     const url = new URL(link.href, window.location.href);
-    if (url.origin !== window.location.origin || url.protocol !== window.location.protocol) return;
-    if (normalizePath(url.pathname) === normalizePath(window.location.pathname)) return;
-    if (phaseRef.current !== "idle") {
-      event.preventDefault();
-      return;
-    }
-
+    if (url.origin !== window.location.origin || normalizePath(url.pathname) === normalizePath(window.location.pathname)) return;
+    if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
     event.preventDefault();
-    if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
-      router.push(`${url.pathname}${url.search}${url.hash}`);
-      return;
-    }
+    if (phaseRef.current !== "idle") return;
+    beginJourney(routeKey(url.pathname));
+    pending.current = { pathname: url.pathname, href: `${url.pathname}${url.search}${url.hash}`, pushed: false };
+    schedule(() => { changePhase("holding"); if (pending.current) { pending.current.pushed = true; router.push(pending.current.href); } }, 160);
+    // Release the visual even if the next route fails to commit; never trap navigation.
+    schedule(skipJourney, 7000);
+  }
 
-    beginSignalSequence(routeKey(url.pathname));
-    pendingPath.current = url.pathname;
-    schedule(() => {
-      changePhase("holding");
-      router.push(`${url.pathname}${url.search}${url.hash}`);
-    }, 170);
-    schedule(() => {
-      if (!pendingPath.current) return;
-      pendingPath.current = null;
-      finishSignalSequence(0);
-    }, 4000);
-  };
-
+  const journey = journeys[destination];
   return <div className="route-transition-root" onClickCapture={handleClick}>
-    <div className="route-live-page" aria-busy={phase !== "idle"}>{children}</div>
-    <div
-      className="route-transition"
-      data-phase={phase}
-      data-status={status.toLowerCase()}
-      data-destination={destination}
-      aria-hidden="true"
-    >
-      <span className="calibration-curtain calibration-curtain-top" />
-      <span className="calibration-curtain calibration-curtain-bottom" />
-      <div className="calibration-field" />
-      <div className="calibration-focus">
-        <SignalObservatory status={status} />
-        <p className="calibration-label mono-label">{destinationLabels[destination]}</p>
-      </div>
-      <span className="calibration-sweep" />
+    <div className="route-live-page" aria-busy={busy} inert={busy}>{children}</div>
+    <div className={styles.overlay} data-phase={phase} data-destination={destination} aria-hidden={!busy}>
+      {busy && <>
+        <div className={styles.story} key={journeyId}>
+          <OrbitJourney />
+          <p className={styles.caption}><LocalizedText text={journey.label} /></p>
+          {slow && <p className={styles.waiting}><LocalizedText text={{ en: "A little longer, we're almost there…", vi: "Chờ một chút, sắp đến rồi…" }} /></p>}
+        </div>
+        <button className={styles.skip} type="button" onClick={skipJourney}><LocalizedText text={{ en: "Skip animation", vi: "Bỏ qua hiệu ứng" }} /><span aria-hidden="true">↗</span></button>
+      </>}
     </div>
+    <span className={styles.screenReaderStatus} role="status" aria-live="polite">{busy ? <LocalizedText text={{ en: `Opening ${journey.label.en.toLowerCase()}`, vi: `Đang mở ${journey.label.vi.toLowerCase()}` }} /> : null}</span>
   </div>;
 }

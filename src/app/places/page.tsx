@@ -1,14 +1,7 @@
-import { ArchiveFooter } from "@/components/archive-ui";
-import { PlacesObservatory } from "@/components/places-observatory";
-import { SiteHeader } from "@/components/site-header";
-import { places } from "@/lib/content";
+import { CollectionPage } from "@/components/collection-page";
 
-export const metadata = { title: "Field Atlas", description: "Places, coordinates, photographs, and small remembered details." };
+export const metadata = { title: "Places" };
 
-export default function PlacesPage() {
-  return <main className="world-page collection-page places-collection">
-    <SiteHeader activeSection="places" />
-    <PlacesObservatory observations={places} />
-    <ArchiveFooter />
-  </main>;
+export default function Page() {
+  return <CollectionPage collection="places" />;
 }

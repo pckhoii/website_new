@@ -1,0 +1,63 @@
+.cosmos { position: relative; min-width: 0; width: 100%; color: #8cc8df; }
+.mapHeading { display: flex; justify-content: space-between; gap: 1rem; align-items: center; color: #a0b5c2; font: .55rem var(--font-mono), monospace; letter-spacing: .1em; padding-inline: 1rem; }
+.mapHeading button { display: flex; align-items: center; gap: .45rem; min-height: 44px; padding: .25rem .7rem; border: 1px solid #8cc8df25; border-radius: 30px; background: transparent; color: #8cc8df; font: .6rem var(--font-body), sans-serif; cursor: pointer; letter-spacing: 0; transition: background 200ms; }
+.mapHeading button:hover, .mapHeading button[aria-pressed="true"] { background: #8cc8df15; }
+.stage { position: relative; aspect-ratio: 600 / 540; margin-top: -.3rem; }
+.sky { position: absolute; inset: 0; width: 100%; height: 100%; transform: translate(var(--drift-x, 0px), var(--drift-y, 0px)); transition: transform 500ms ease-out; pointer-events: none; }
+.centralPlanet { transform-origin: 300px 268px; animation: planet-float 8s ease-in-out infinite; transition: opacity 600ms; }
+.svgNote { font: 21px var(--font-hand), cursive; }
+.stars circle { animation: twinkle 5s ease-in-out infinite; }
+.extraStars { opacity: .35; transition: opacity 800ms; }
+.cosmos[data-night="true"] .extraStars { opacity: 1; }
+.cosmos[data-night="true"] .centralPlanet { opacity: .15; }
+.nightConstellation { opacity: 0; transition: opacity 800ms; }
+.cosmos[data-night="true"] .nightConstellation { opacity: 1; filter: drop-shadow(0 0 6px #8cc8df80); }
+.cosmos[data-night="true"] .stars circle { filter: drop-shadow(0 0 4px #d6f1fb); }
+.planetLink { position: absolute; width: 95px; min-height: 80px; display: flex; flex-direction: column; align-items: center; gap: .1rem; transform: translate(-50%, -50%); padding: 4px; border: 0; border-radius: 18px; background: transparent; color: var(--planet-color); cursor: pointer; transition: background 220ms, filter 220ms; }
+.planetLink > svg { width: 80px; height: 64px; transition: transform 350ms; }
+.planetLink > span { color: #d6e2e8; font: .65rem var(--font-body), sans-serif; line-height: 1.5; }
+.planetLink[aria-pressed="true"] { background: #8cc8df0c; }
+.planetLink:hover > svg { transform: translateY(-5px) rotate(-7deg); }
+.planetLink[aria-pressed="true"] > span { color: var(--planet-color); }
+.planetLink[aria-pressed="true"]::after { content: ''; display: block; position: absolute; bottom: -4px; width: 4px; height: 4px; border-radius: 100%; background: var(--planet-color); box-shadow: 0 0 10px var(--planet-color); }
+.planetCaption { position: absolute; left: 50%; top: 65%; white-space: nowrap; transform: translateX(-50%) rotate(-6deg); color: #ecc09c; font: 1.15rem var(--font-hand), cursive; pointer-events: none; }
+.destination { display: flex; align-items: center; gap: .8rem; margin: -.3rem 1rem 0; padding: .85rem 1rem; border: 1px solid #8cc8df24; border-radius: 8px; background: #8cc8df06; }
+.destinationDot { width: 6px; height: 6px; flex-shrink: 0; background: var(--planet-color); border-radius: 50%; box-shadow: 0 0 12px var(--planet-color); }
+.destination strong { color: var(--planet-color); font-size: .72rem; font-weight: 500; }
+.destination p { color: #a0b5c2; font-size: .64rem; margin: .1rem 0 0; }
+.destination a { display: flex; align-items: center; gap: .35rem; margin-left: auto; min-height: 44px; color: #f3ecdf; white-space: nowrap; font-size: .65rem; }
+.destination a:hover { color: var(--planet-color); }
+.mapHint { text-align: center; color: #a0b5c2; font: .55rem var(--font-mono), monospace; margin: .85rem 0 1.5rem; }
+.garden { position: relative; display: grid; grid-template-columns: 1fr 1.3fr; align-items: center; gap: 3rem; margin: 1rem var(--world-pad) 5rem; padding: 2.5rem; border: 1px solid #e4dbcb; border-radius: 3px 8px 4px 6px; background: radial-gradient(ellipse at 85% 50%, #8cc8df30, transparent 75%), #f3ecdf; box-shadow: 0 12px 45px #0002; }
+.garden::before, .garden::after { position: absolute; content: ''; width: 100px; height: 26px; background: #c7bda998; top: -13px; left: 8%; transform: rotate(-7deg); border-inline: 1px dashed #ddd3bf; pointer-events: none; }
+.garden::after { left: auto; right: 8%; transform: rotate(6deg); }
+.gardenEyebrow { color: #5a7468; font: .55rem var(--font-mono), monospace; letter-spacing: .1em; }
+.gardenCopy h2 { margin: .8rem 0 1rem; color: #263e4b; font: 400 clamp(2.2rem, 3vw, 3.5rem)/1.1 var(--font-display), serif; letter-spacing: -.035em; }
+.gardenCopy > p:not(.gardenEyebrow):not(.gardenStatus) { max-width: 35ch; color: #576e7a; font-size: .8rem; line-height: 1.9; }
+.gardenActions { display: flex; flex-wrap: wrap; gap: .75rem; margin-top: 1.5rem; }
+.gardenActions button { display: flex; align-items: center; gap: .5rem; min-height: 44px; padding: .5rem .75rem; border: 1px solid #62869750; border-radius: 6px; background: transparent; color: #365f75; font: .65rem var(--font-body), sans-serif; cursor: pointer; transition: background 200ms; }
+.garden button:focus-visible { outline-color: #365f75; }
+.gardenActions button:hover { background: #8cc8df15; }
+.gardenActions button:disabled { opacity: .5; cursor: default; }
+.gardenCopy .gardenStatus { color: #576e7a; font: .55rem/1.8 var(--font-mono), monospace; margin-top: 1.2rem; }
+.gardenSky { display: block; position: relative; width: 100%; height: 270px; border: 0; border-radius: 50%; background: radial-gradient(circle, #62869780 .6px, transparent 1px) 15px 20px / 53px 61px; cursor: crosshair; }
+.gardenSky:disabled { cursor: default; }
+.gardenSky > svg { position: absolute; inset: 0; width: 100%; height: 100%; pointer-events: none; }
+.gardenSky polyline { stroke: #628697; }
+.gardenStar { position: absolute; font: 2.1rem/1 serif; color: #9e6747; transform: translate(-50%, -50%); animation: appear 400ms ease-out; pointer-events: none; }
+.gardenSkyNote { position: absolute; bottom: -1.5rem; left: 0; width: 100%; color: #365f75; font: 1.15rem var(--font-hand), cursive; transform: rotate(-3deg); pointer-events: none; }
+.companion { position: relative; color: #c7a995; flex-shrink: 0; }
+.companion > button { display: flex; align-items: center; gap: .5rem; border: 0; background: transparent; color: inherit; padding: 0; min-height: 44px; cursor: pointer; font: 1.1rem var(--font-hand), cursive; }
+.companion > button > svg { width: 70px; height: 60px; transition: transform 300ms; }
+.companion > button:hover > svg { transform: translateY(-5px) rotate(-6deg); }
+.companion > button[aria-expanded="true"] > svg { animation: creature-hop 500ms ease-out; }
+.bubble { position: absolute; z-index: 35; bottom: calc(100% + .5rem); right: 0; width: 260px; padding: 1rem 2.5rem 1rem 1rem; background: #f3ecdf; color: #263e4b; border-radius: 12px 12px 3px 12px; box-shadow: 0 8px 32px #0004; }
+.bubble p { font: .75rem/1.8 var(--font-body), sans-serif; margin: 0; }
+.bubble button { position: absolute; top: 0; right: 0; width: 44px; height: 44px; border: 0; background: transparent; color: #263e4b; font-size: 1.3rem; cursor: pointer; }
+@keyframes planet-float { 0%,100% { transform: translateY(0) rotate(-2deg); } 50% { transform: translateY(-8px) rotate(1deg); } }
+@keyframes twinkle { 0%,100% { opacity: .35; } 50% { opacity: .9; } }
+@keyframes appear { from { opacity: 0; scale: .4; } to { opacity: 1; scale: 1; } }
+@keyframes creature-hop { 0%,100% { transform: translateY(0); } 40% { transform: translateY(-12px) rotate(-6deg); } 70% { transform: translateY(-3px) rotate(4deg); } }
+@media(max-width: 1050px) { .planetLink { width: 78px; } .planetLink > svg { width: 65px; height: 54px; } .destination { margin-inline: 0; padding-inline: .7rem; } .destination p { font-size: .6rem; } .garden { padding: 1.8rem; gap: 1.5rem; } }
+@media(max-width: 700px) { .cosmos { margin-top: 2.2rem; } .mapHeading { padding: 0; } .stage { margin-top: .4rem; } .planetLink { min-height: 66px; width: 74px; } .planetLink > svg { width: 60px; height: 48px; } .planetLink > span { font-size: .6rem; } .planetCaption { font-size: 1rem; } .mapHint { margin-bottom: .5rem; } .garden { grid-template-columns: 1fr; margin-bottom: 3rem; padding: 1.5rem; gap: 1rem; } .gardenSky { height: 240px; margin-bottom: 1.5rem; } .gardenSkyNote { font-size: 1.1rem; } .companion > button { gap: .2rem; } }
+@media(prefers-reduced-motion: reduce) { .centralPlanet, .stars circle, .gardenStar, .companion > button[aria-expanded="true"] > svg { animation: none; } .sky, .planetLink, .planetLink > svg, .companion > button > svg, .nightConstellation, .centralPlanet, .extraStars { transition: none; } .planetLink:hover > svg, .companion > button:hover > svg { transform: none; } }

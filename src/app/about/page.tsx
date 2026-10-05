@@ -10,7 +10,7 @@ export const metadata = { title: "About Khoi", description: "Profile, experience
 export default function AboutPage() {
   return <main className="world-page collection-page about-collection">
     <SiteHeader activeSection="about" />
-    <CollectionHeader index="05" eyebrow={siteContent.about.eyebrow} title={siteContent.about.title} intro={siteContent.about.bodyOne} artifact="constellation-k" tone="chalk" />
+    <CollectionHeader index="05" eyebrow={siteContent.about.eyebrow} title={{ en: "Hello, I’m Khoi.", vi: "Chào bạn, mình là Khôi." }} intro={siteContent.about.bodyOne} artifact="constellation-k" />
     <section className="dossier">
       <aside className="dossier-profile"><div className="profile-image"><Image src="/profile/khoi.png" alt="Phạm Công Nguyễn Khôi" fill sizes="(max-width: 760px) 55vw, 24vw" priority /></div><p>{siteContent.hero.name}</p><span className="mono-label">DATA ENGINEER / ANALYST<br />SÀI GÒN, VIETNAM</span><a className="focus-ring" href="mailto:phamkhoi1602fw@gmail.com"><Mail size={15} /> phamkhoi1602fw@gmail.com</a></aside>
       <div className="dossier-records">
