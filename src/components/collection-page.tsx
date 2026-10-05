@@ -13,7 +13,6 @@ export function CollectionPage({ collection }: { collection: keyof typeof collec
     <SiteHeader activeSection={collection} />
     <div className={styles.desk}>
       <div className={styles.breadcrumb}><Link href="/"><ArrowLeft size={14} aria-hidden="true" /><LocalizedText text={{ en: "My little universe", vi: "Vũ trụ nhỏ của mình" }} /></Link><span><LocalizedText text={{ en: "a few things to keep", vi: "vài điều để giữ lại" }} /></span></div>
-      <nav className={styles.tabs} aria-label="Collections / Các góc nhỏ">{Object.entries(collections).map(([key, value]) => <Link href={`/${key}`} key={key} aria-current={key === collection ? "page" : undefined}><span className={styles.tabDot} aria-hidden="true" /><LocalizedText text={value.eyebrow} /></Link>)}</nav>
       <section className={styles.sheet} aria-labelledby="collection-title">
         <header className={styles.heading}>
           <div><p className={styles.eyebrow}><LocalizedText text={content.eyebrow} /></p><h1 id="collection-title"><LocalizedText text={content.title} /></h1><p className={styles.intro}><LocalizedText text={content.intro} /></p></div>
