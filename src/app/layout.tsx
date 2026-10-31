@@ -1,11 +1,13 @@
 import type { Metadata, Viewport } from "next";
 import { Be_Vietnam_Pro, Patrick_Hand, JetBrains_Mono, Newsreader } from "next/font/google";
 import { RouteTransition } from "@/components/route-transition";
+import { SiteMotion } from "@/components/site-motion";
 import "./globals.css";
 import "./archive.css";
 
 import "./archive-ui.css";
 import "./cosmic-theme.css";
+import "./motion.css";
 
 const display = Newsreader({ variable: "--font-display", subsets: ["latin", "vietnamese"], display: "swap" });
 const hand = Patrick_Hand({ variable: "--font-hand", subsets: ["latin", "vietnamese"], weight: "400", display: "swap" });
@@ -22,5 +24,5 @@ export const viewport: Viewport = { width: "device-width", initialScale: 1, them
 
 export default function RootLayout({ children }: Readonly<{ children: React.ReactNode }>) {
   const languageBootstrap = `try{const l=localStorage.getItem('personal-universe-language');if(l==='vi'){document.documentElement.dataset.language='vi';document.documentElement.lang='vi'}}catch(e){}`;
-  return <html lang="en" data-language="en" data-scroll-behavior="smooth" suppressHydrationWarning className={`${display.variable} ${body.variable} ${mono.variable} ${hand.variable}`}><head><script id="language-bootstrap" dangerouslySetInnerHTML={{ __html: languageBootstrap }} /></head><body><RouteTransition>{children}</RouteTransition></body></html>;
+  return <html lang="en" data-language="en" data-scroll-behavior="smooth" suppressHydrationWarning className={`${display.variable} ${body.variable} ${mono.variable} ${hand.variable}`}><head><script id="language-bootstrap" dangerouslySetInnerHTML={{ __html: languageBootstrap }} /></head><body><RouteTransition><SiteMotion />{children}</RouteTransition></body></html>;
 }

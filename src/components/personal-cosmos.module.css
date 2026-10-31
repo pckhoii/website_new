@@ -61,3 +61,17 @@
 @media(max-width: 1050px) { .planetLink { width: 78px; } .planetLink > svg { width: 65px; height: 54px; } .destination { margin-inline: 0; padding-inline: .7rem; } .destination p { font-size: .6rem; } .garden { padding: 1.8rem; gap: 1.5rem; } }
 @media(max-width: 700px) { .cosmos { margin-top: 2.2rem; } .mapHeading { padding: 0; } .stage { margin-top: .4rem; } .planetLink { min-height: 66px; width: 74px; } .planetLink > svg { width: 60px; height: 48px; } .planetLink > span { font-size: .6rem; } .planetCaption { font-size: 1rem; } .mapHint { margin-bottom: .5rem; } .garden { grid-template-columns: 1fr; margin-bottom: 3rem; padding: 1.5rem; gap: 1rem; } .gardenSky { height: 240px; margin-bottom: 1.5rem; } .gardenSkyNote { font-size: 1.1rem; } .companion > button { gap: .2rem; } }
 @media(prefers-reduced-motion: reduce) { .centralPlanet, .stars circle, .gardenStar, .companion > button[aria-expanded="true"] > svg { animation: none; } .sky, .planetLink, .planetLink > svg, .companion > button > svg, .nightConstellation, .centralPlanet, .extraStars { transition: none; } .planetLink:hover > svg, .companion > button:hover > svg { transform: none; } }
+
+.journeyTrail { opacity: .5; stroke-dasharray: 1; animation: trace-orbit 850ms var(--ease-soft) both; }
+.journeyStar { offset-distance: 100%; offset-rotate: 0deg; animation: follow-orbit 1100ms var(--ease-soft) both; }
+.destination { transition: border-color 450ms, background 450ms; border-color: color-mix(in srgb, var(--planet-color), transparent 72%); }
+.destinationCopy { animation: arrive-copy 400ms var(--ease-soft) both; }
+.destination a > svg { transition: transform 300ms var(--ease-soft); }
+.destination a:hover > svg { transform: translate(3px,-3px); }
+.gardenSky polyline { stroke-dasharray: 1 1; }
+.bubble { animation: arrive-copy 300ms var(--ease-soft) both; transform-origin: bottom right; }
+.planetLink:active > svg { scale: .94; }
+@keyframes trace-orbit { from { stroke-dashoffset: 1; opacity: 0; } to { stroke-dashoffset: 0; opacity: .5; } }
+@keyframes follow-orbit { from { offset-distance: 0%; opacity: 0; } 15% { opacity: 1; } to { offset-distance: 100%; opacity: 0; } }
+@keyframes arrive-copy { from { opacity: 0; translate: 0 5px; } to { opacity: 1; translate: 0 0; } }
+@media(prefers-reduced-motion: reduce) { .journeyTrail, .journeyStar, .destinationCopy, .bubble { animation: none; } .journeyStar { display: none; } .destination, .destination a > svg { transition: none; } }

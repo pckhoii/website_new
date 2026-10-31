@@ -19,7 +19,7 @@ export default function HomePage() {
     <a className="skip-link" href="#collections">Skip to collections / Đến các góc nhỏ</a>
     <SiteHeader />
     <section className={styles.hero} aria-labelledby="home-title">
-      <div className={styles.copy}>
+      <div className={styles.copy} data-reveal>
         <p className={styles.eyebrow}><span className={styles.sparkle} aria-hidden="true">✳</span><LocalizedText text={{ en: "A SMALL CORNER OF THE INTERNET", vi: "MỘT GÓC NHỎ TRÊN INTERNET" }} /></p>
         <p className={styles.hello}><LocalizedText text={{ en: "Hello, I’m Khoi.", vi: "Chào bạn, mình là Khôi." }} /><svg viewBox="0 0 76 35" fill="none" aria-hidden="true"><path d="M2 13C24 2 53 5 65 21M55 18l12 6-2-13" /></svg></p>
         <h1 id="home-title"><LocalizedText text={{ en: "A little", vi: "Một vũ trụ" }} /><br /><em><LocalizedText text={{ en: "universe.", vi: "nho nhỏ." }} /></em><span className={styles.titleStar} aria-hidden="true">✧</span></h1>
@@ -31,8 +31,8 @@ export default function HomePage() {
       <div className={styles.heroFoot}><span><span className="signal-dot" /><LocalizedText text={{ en: "Always a work in progress. Just like me.", vi: "Vẫn đang lớn lên từng ngày. Giống mình." }} /></span><span className={styles.handnote}><LocalizedText text={{ en: "Make yourself at home ↗", vi: "Cứ tự nhiên như ở nhà ↗" }} /></span></div>
     </section>
     <section className={styles.collections} id="collections" aria-labelledby="collections-title">
-      <header className={styles.indexHeading}><div><p className={styles.eyebrow}><LocalizedText text={{ en: "DIFFERENT ORBITS. SAME CURIOSITY.", vi: "NHIỀU QUỸ ĐẠO. CHUNG MỘT SỰ TÒ MÒ." }} /></p><h2 id="collections-title"><LocalizedText text={{ en: "What makes up my world.", vi: "Những mảnh ghép của mình." }} /></h2></div><p className={styles.sectionNote}><LocalizedText text={{ en: "Pick somewhere to land.", vi: "Chọn một nơi để hạ cánh." }} /></p></header>
-      <div className={styles.cardGrid}>{gateways.map((gateway) => <Link className={styles.card} data-kind={gateway.kind} href={gateway.href} key={gateway.href}>
+      <header className={styles.indexHeading} data-reveal><div><p className={styles.eyebrow}><LocalizedText text={{ en: "DIFFERENT ORBITS. SAME CURIOSITY.", vi: "NHIỀU QUỸ ĐẠO. CHUNG MỘT SỰ TÒ MÒ." }} /></p><h2 id="collections-title"><LocalizedText text={{ en: "What makes up my world.", vi: "Những mảnh ghép của mình." }} /></h2></div><p className={styles.sectionNote}><LocalizedText text={{ en: "Pick somewhere to land.", vi: "Chọn một nơi để hạ cánh." }} /></p></header>
+      <div className={styles.cardGrid}>{gateways.map((gateway, index) => <Link className={styles.card} data-kind={gateway.kind} data-tilt data-reveal data-delay={index * 70} href={gateway.href} key={gateway.href}>
         <div className={styles.cardTop}><span>{gateway.meta}</span><ArrowUpRight size={19} aria-hidden="true" /></div><OrbitSketch kind={gateway.kind} />
         <h3><LocalizedText text={gateway.title} /></h3><p><LocalizedText text={gateway.note} /></p>
       </Link>)}</div>

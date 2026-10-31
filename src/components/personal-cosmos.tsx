@@ -1,6 +1,6 @@
 "use client";
 
-import { useRef, useState, type CSSProperties, type MouseEvent } from "react";
+import { useEffect, useRef, useState, type CSSProperties, type MouseEvent } from "react";
 import Link from "next/link";
 import { ArrowUpRight, RotateCcw, Sparkles } from "lucide-react";
 import { LocalizedText } from "./localized-text";
@@ -38,20 +38,33 @@ export function PersonalCosmos() {
   const [selected, setSelected] = useState<Orbit>("work");
   const [night, setNight] = useState(false);
   const stageRef = useRef<HTMLDivElement>(null);
+  const driftFrame = useRef(0);
+  const stageBounds = useRef<DOMRect | null>(null);
+  useEffect(() => () => cancelAnimationFrame(driftFrame.current), []);
   const world = worlds.find(item => item.kind === selected)!;
+  const route = `M300 268 Q${world.x * 6} 268 ${world.x * 6} ${world.y * 5.4}`;
   function move(event: MouseEvent<HTMLDivElement>) {
-    if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
-    const rect = event.currentTarget.getBoundingClientRect();
-    event.currentTarget.style.setProperty("--drift-x", `${((event.clientX - rect.left) / rect.width - .5) * 10}px`);
-    event.currentTarget.style.setProperty("--drift-y", `${((event.clientY - rect.top) / rect.height - .5) * 10}px`);
+    if (window.matchMedia("(prefers-reduced-motion: reduce)").matches || document.documentElement.dataset.motion === "paused") return;
+    const rect = stageBounds.current;
+    const { clientX, clientY } = event;
+    if (!rect) return;
+    cancelAnimationFrame(driftFrame.current);
+    driftFrame.current = requestAnimationFrame(() => {
+      stageRef.current?.style.setProperty("--drift-x", `${((clientX - rect.left) / rect.width - .5) * 12}px`);
+      stageRef.current?.style.setProperty("--drift-y", `${((clientY - rect.top) / rect.height - .5) * 12}px`);
+    });
   }
-  return <div className={styles.cosmos} data-night={night}>
+  return <div className={styles.cosmos} data-night={night} data-reveal data-delay="140" data-ambient>
     <div className={styles.mapHeading}><span>THE KHOI SYSTEM</span><button type="button" aria-pressed={night} onClick={() => setNight(value => !value)}><Sparkles size={12} aria-hidden="true" /><LocalizedText text={night ? { en: "Daydream mode", vi: "Chế độ mơ màng" } : { en: "Go stargazing", vi: "Ngắm sao nhé" }} /></button></div>
-    <div className={styles.stage} ref={stageRef} onMouseMove={move} onMouseLeave={() => { stageRef.current?.style.setProperty("--drift-x", "0px"); stageRef.current?.style.setProperty("--drift-y", "0px"); }}>
-      <svg className={styles.sky} viewBox="0 0 600 540" fill="none" aria-hidden="true">
+    <div className={styles.stage} ref={stageRef} onMouseEnter={event => { stageBounds.current = event.currentTarget.getBoundingClientRect(); }} onMouseMove={move} onMouseLeave={() => { cancelAnimationFrame(driftFrame.current); stageBounds.current = null; stageRef.current?.style.setProperty("--drift-x", "0px"); stageRef.current?.style.setProperty("--drift-y", "0px"); }}>
+      <svg className={styles.sky} data-drift viewBox="0 0 600 540" fill="none" aria-hidden="true">
         <defs><radialGradient id="little-planet"><stop stopColor="#efc8ac" /><stop offset=".72" stopColor="#d6ad91" /><stop offset="1" stopColor="#a18376" /></radialGradient><radialGradient id="cosmos-glow"><stop stopColor="#71bad9" stopOpacity=".18" /><stop offset="1" stopColor="#71bad9" stopOpacity="0" /></radialGradient></defs>
         <circle cx="300" cy="270" r="250" fill="url(#cosmos-glow)" />
         <g stroke="#8cc8df" strokeWidth=".7" opacity=".32"><ellipse cx="300" cy="270" rx="238" ry="170" transform="rotate(-27 300 270)" /><ellipse cx="300" cy="270" rx="184" ry="122" transform="rotate(25 300 270)" strokeDasharray="3 8" /><circle cx="300" cy="270" r="236" strokeDasharray="1 10" /></g>
+        <g key={selected} style={{ color: world.color }}>
+          <path className={styles.journeyTrail} d={route} stroke="currentColor" strokeWidth="1" pathLength="1" />
+          <g className={styles.journeyStar} style={{ offsetPath: `path("${route}")` }}><path d="M0-6 1.8-1.8 6 0 1.8 1.8 0 6-1.8 1.8-6 0-1.8-1.8Z" fill="#07141d" stroke="currentColor" strokeWidth="1" /></g>
+        </g>
         <g className={styles.stars} fill="#d9edf4">{Array.from({ length: 38 }, (_, i) => <circle key={i} cx={30 + ((i * 137) % 540)} cy={20 + ((i * 97) % 490)} r={i % 5 === 0 ? 1.8 : .85} style={{ animationDelay: `${i % 7}s` }} />)}</g>
         <g className={styles.extraStars} stroke="#ecc09c" strokeWidth="1.2">{[[65,190],[480,105],[414,450],[230,50],[550,390],[120,400],[370,94],[490,445]].map(([x,y]) => <path key={x} d={`M${x-5} ${y}h10M${x} ${y-5}v10`} />)}</g>
         <g className={styles.centralPlanet}>
@@ -71,7 +84,7 @@ export function PersonalCosmos() {
       {worlds.map(item => <button key={item.kind} className={styles.planetLink} data-kind={item.kind} style={{ left: `${item.x}%`, top: `${item.y}%`, "--planet-color": item.color } as CSSProperties} aria-pressed={selected === item.kind} onClick={() => setSelected(item.kind)}><OrbitSketch kind={item.kind} /><span><LocalizedText text={item.title} /></span></button>)}
       <span className={styles.planetCaption}><LocalizedText text={night ? { en: "K, a constellation of curiosities", vi: "K, một chòm sao của những tò mò" } : { en: "a perfectly imperfect little world", vi: "một thế giới nhỏ, chẳng cần hoàn hảo" }} /></span>
     </div>
-    <div className={styles.destination} style={{ "--planet-color": world.color } as CSSProperties}><span className={styles.destinationDot} /><div aria-live="polite"><strong><LocalizedText text={world.title} /></strong><p><LocalizedText text={world.description} /></p></div><Link href={`/${world.kind}`}><LocalizedText text={{ en: "Land here", vi: "Hạ cánh" }} /><ArrowUpRight size={15} aria-hidden="true" /></Link></div>
+    <div className={styles.destination} style={{ "--planet-color": world.color } as CSSProperties}><span className={styles.destinationDot} /><div aria-live="polite"><div key={selected} className={styles.destinationCopy}><strong><LocalizedText text={world.title} /></strong><p><LocalizedText text={world.description} /></p></div></div><Link href={`/${world.kind}`}><LocalizedText text={{ en: "Land here", vi: "Hạ cánh" }} /><ArrowUpRight size={15} aria-hidden="true" /></Link></div>
     <p className={styles.mapHint}><LocalizedText text={{ en: "Tap a world. Follow your curiosity.", vi: "Chạm một hành tinh. Đi theo sự tò mò." }} /></p>
   </div>;
 }
@@ -84,7 +97,7 @@ export function ConstellationGarden() {
     const nextPoint = point ?? { x: 12 + Math.random() * 76, y: 16 + Math.random() * 64 };
     setPoints(current => current.length >= 12 ? current : [...current, nextPoint]);
   }
-  return <section className={styles.garden} aria-labelledby="garden-title">
+  return <section className={styles.garden} data-reveal aria-labelledby="garden-title">
     <div className={styles.gardenCopy}><p className={styles.gardenEyebrow}><LocalizedText text={{ en: "A LITTLE SPACE FOR YOU", vi: "MỘT KHOẢNG NHỎ DÀNH CHO BẠN" }} /></p><h2 id="garden-title"><LocalizedText text={{ en: "Leave a little light.", vi: "Để lại một chút sáng." }} /></h2><p><LocalizedText text={{ en: "Even a brief visit can become a constellation. Tap the sky and connect a few stars of your own.", vi: "Một lần ghé qua cũng có thể thành chòm sao. Chạm lên bầu trời, nối vài ngôi sao của riêng bạn." }} /></p><div className={styles.gardenActions}><button type="button" onClick={() => addStar()} disabled={points.length >= 12}><Sparkles size={14} aria-hidden="true" /><LocalizedText text={{ en: "Add a star", vi: "Thêm ngôi sao" }} /></button><button type="button" onClick={() => setPoints([])}><RotateCcw size={13} aria-hidden="true" /><LocalizedText text={{ en: "Start again", vi: "Vẽ lại nhé" }} /></button></div><p className={styles.gardenStatus} role="status"><LocalizedText text={points.length >= 12 ? { en: "Your constellation is complete. A lovely place to start again.", vi: "Chòm sao đã đầy rồi. Mình vẽ một chòm mới nhé." } : { en: `${points.length} / 12 stars · Just here, just for this visit.`, vi: `${points.length} / 12 ngôi sao · Riêng cho lần ghé này.` }} /></p></div>
     <button className={styles.gardenSky} type="button" disabled={points.length >= 12} aria-label="Add a star to your constellation / Thêm sao vào chòm sao của bạn" onClick={event => { const rect = event.currentTarget.getBoundingClientRect(); addStar(event.detail === 0 ? undefined : { x: Math.min(94, Math.max(6, (event.clientX - rect.left) / rect.width * 100)), y: Math.min(90, Math.max(10, (event.clientY - rect.top) / rect.height * 100)) }); }}>
       <svg viewBox="0 0 100 100" preserveAspectRatio="none" aria-hidden="true"><polyline points={points.map(point => `${point.x},${point.y}`).join(" ")} fill="none" stroke="#8cc8df" strokeWidth=".2" strokeDasharray="1 1" /></svg>

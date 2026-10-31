@@ -87,7 +87,7 @@ export function RouteTransition({ children }: { children: ReactNode }) {
   }, [finishJourney, pathname]);
   useEffect(() => {
     const handleHistory = () => {
-      if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) { skipJourney(); return; }
+      if (window.matchMedia("(prefers-reduced-motion: reduce)").matches || document.documentElement.dataset.motion === "paused") { skipJourney(); return; }
       pending.current = null;
       beginJourney(routeKey(window.location.pathname));
       finishJourney();
@@ -111,7 +111,7 @@ export function RouteTransition({ children }: { children: ReactNode }) {
     if (!link || (link.target && link.target !== "_self") || link.hasAttribute("download")) return;
     const url = new URL(link.href, window.location.href);
     if (url.origin !== window.location.origin || normalizePath(url.pathname) === normalizePath(window.location.pathname)) return;
-    if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
+    if (window.matchMedia("(prefers-reduced-motion: reduce)").matches || document.documentElement.dataset.motion === "paused") return;
     event.preventDefault();
     if (phaseRef.current !== "idle") return;
     beginJourney(routeKey(url.pathname));
